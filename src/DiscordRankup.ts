@@ -128,7 +128,6 @@ export class DiscordRankup extends EventEmitter {
     return memberToUpdate.XP;
   }
 
-
   /**
    * Set the user's XP and emit the levelUp event if the user levels up
    * @param {string} userID The ID of the user
