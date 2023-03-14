@@ -3,7 +3,6 @@ import dotenv from 'dotenv';
 import { Client } from 'discord.js';
 
 describe('DiscordRankup', () => {
-
   beforeAll(() => {
     dotenv.config();
     xp.init(process.env.RANKUP_DB!, new Client({ intents: [] }));
