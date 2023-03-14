@@ -39,11 +39,11 @@ Once that is done, you can start managing the user's XP.
 xp.addXP(userID, guildID, xpAmount, emitEvent, cause)
 ```
 
-userID: The user's ID
-guildID: The guild's ID
-xpAmount: The amount of XP to add
-emitEvent (optional, true by default): Whether or not to emit the event if the user levels up
-cause (optional): The cause of the XP gain, can be any object, it will be emitted in the event
+- userID: The user's ID
+- guildID: The guild's ID
+- xpAmount: The amount of XP to add
+- emitEvent (optional, true by default): Whether or not to emit the event if the user levels up
+- cause (optional): The cause of the XP gain, can be any object, it will be emitted in the event
 
 ```js
 xp.removeXP(userID, guildID, xpAmount, emitEvent, cause)
@@ -67,3 +67,33 @@ xp.createMember(userID, guildID)
 ```
 
 This will create a user in the database, if the user already exists, it will return false.
+
+```js
+xp.deleteMember(userID, guildID)
+```
+
+This will delete the user from the database, if the user was deleted, it will return true.
+
+## Events
+
+Discord-RankUP has a few events that you can use.
+
+- levelUp: Emitted when a user levels up
+- (More to come)
+
+```js
+xp.on('levelUp', (XPMember, cause) => {
+    // Do something
+})
+```
+
+## Types
+
+```ts
+interface XPMember {
+    userID: string;
+    guildID: string;
+    xp: number;
+    level: number;
+}
+```

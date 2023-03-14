@@ -32,4 +32,18 @@ describe('DiscordRankup', () => {
     const user = await xp.fetch('user1', 'guild1');
     expect(user!.XP).toBe(0);
   });
+
+  //test createMember
+  test('createMember should create a new user', async () => {
+    await xp.createMember('user2', 'guild1');
+    const user = await xp.fetch('user2', 'guild1');
+    expect(user!.XP).toBe(0);
+  });
+
+  //test deleteMember
+  test('deleteMember should delete a user', async () => {
+    await xp.deleteMember('user2', 'guild1');
+    const user = await xp.fetch('user2', 'guild1');
+    expect(user).toBe(null);
+  });
 });

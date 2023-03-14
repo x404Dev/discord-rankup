@@ -29,9 +29,10 @@ export class DiscordRankup extends EventEmitter {
   }
 
   /**
-   * @param userID The ID of the user
-   * @param guildID The ID of the guild
-   * @returns The member's XP
+   * Create a member in the database if they don't exist
+   * @param {string} userID The ID of the user
+   * @param {string} guildID The ID of the guild
+   * @returns {XPMember} The member's XP
    * @description Create a member in the database if they don't exist
    */
   public async createMember(
@@ -50,6 +51,24 @@ export class DiscordRankup extends EventEmitter {
     });
     // Save the member to the database
     return newMember.save();
+  }
+
+  /**
+   * Delete a member from the database
+   * @param {string} userID The ID of the user
+   * @param {string} guildID The ID of the guild
+   * @returns {boolean} Whether the member was deleted successfully
+   */
+  public async deleteMember(
+    userID: string | Snowflake,
+    guildID: string | Snowflake,
+  ): Promise<boolean> {
+    //delete the member from the database
+    const member = await xpmember.findOneAndDelete({
+      UserID: userID,
+      GuildID: guildID,
+    });
+    return !!member;
   }
 
   /**
@@ -169,6 +188,13 @@ export class DiscordRankup extends EventEmitter {
     // Save the member to the database
     await memberToUpdate.save();
     return memberToUpdate.XP;
+  }
+
+  public async resetXP(
+    userID: string | Snowflake,
+    guildID: string | Snowflake,
+  ): Promise<number> {
+    return this.setXP(userID, guildID, 0);
   }
 
   /**
