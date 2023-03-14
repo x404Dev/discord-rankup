@@ -56,6 +56,9 @@ export class DiscordRankup extends EventEmitter {
    * Add XP to the user and emit the levelUp event if the user levels up
    * @param userID The ID of the user
    * @param guildID The ID of the guild
+   * @param xp The amount of XP to add
+   * @param emitEvent Whether to emit the levelUp event
+   * @param cause The cause of the level up, defined when a function affecting the xp is called
    * @returns The new amount of user's XP
    */
   public async addXP(
