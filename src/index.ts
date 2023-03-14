@@ -1,30 +1,26 @@
 import mongoose from 'mongoose';
-import EventEmitter from 'events';
 import xpmember from './models/xpmember';
 import { XPMember } from './types/types';
-import { Snowflake } from 'discord.js';
+import { Client, Snowflake } from 'discord.js';
 
-export class DiscordRankup extends EventEmitter {
-  private mongoURL: string;
-
-  constructor() {
-    super();
-  }
-
+export default class DiscordRankup {
+  private static mongoURL: string;
+  private static client: Client;
   /**
    * @param url The URL to the MongoDB database
    * @returns mongoose connection
    */
-  public async connect(url: string, options?: mongoose.ConnectOptions) {
+  public static async init(url: string, client: Client, options?: mongoose.ConnectOptions) {
     // Connect to the database
     this.mongoURL = url;
+    this.client = client;
     return await mongoose.connect(url, options);
   }
 
   /**
    * @description Disconnects from the database
    */
-  public async disconnect() {
+  public static async disconnect() {
     return await mongoose.disconnect();
   }
 
@@ -35,7 +31,7 @@ export class DiscordRankup extends EventEmitter {
    * @returns {XPMember} The member's XP
    * @description Create a member in the database if they don't exist
    */
-  public async createMember(
+  public static async createMember(
     userID: string | Snowflake,
     guildID: string | Snowflake,
   ): Promise<XPMember | false> {
@@ -59,7 +55,7 @@ export class DiscordRankup extends EventEmitter {
    * @param {string} guildID The ID of the guild
    * @returns {boolean} Whether the member was deleted successfully
    */
-  public async deleteMember(
+  public static async deleteMember(
     userID: string | Snowflake,
     guildID: string | Snowflake,
   ): Promise<boolean> {
@@ -80,7 +76,7 @@ export class DiscordRankup extends EventEmitter {
    * @param cause The cause of the level up, defined when a function affecting the xp is called
    * @returns The new amount of user's XP
    */
-  public async addXP(
+  public static async addXP(
     userID: string | Snowflake,
     guildID: string | Snowflake,
     xp: number,
@@ -102,7 +98,7 @@ export class DiscordRankup extends EventEmitter {
     const level = Math.floor(0.05 * Math.sqrt(xp));
     // Emit levelUp event if the user levels up
     if (level > memberToUpdate.Level && emitEvent) {
-      this.emit('levelUp', memberToUpdate, cause);
+      this.client.emit('levelUp', memberToUpdate, cause);
     }
     memberToUpdate.Level = level;
     // Save the member to the database
@@ -120,7 +116,7 @@ export class DiscordRankup extends EventEmitter {
    * @returns The new amount of user's XP
    * @description Remove XP from the user
    */
-  public async removeXP(
+  public static async removeXP(
     userID: string | Snowflake,
     guildID: string | Snowflake,
     xp: number,
@@ -142,7 +138,7 @@ export class DiscordRankup extends EventEmitter {
     const level = Math.floor(0.05 * Math.sqrt(xp));
     // Emit levelUp event if the user levels up
     if (level > memberToUpdate.Level && emitEvent) {
-      this.emit('levelUp', memberToUpdate, cause);
+      this.client.emit('levelUp', memberToUpdate, cause);
     }
     memberToUpdate.Level = level;
     // Save the member to the database
@@ -159,7 +155,7 @@ export class DiscordRankup extends EventEmitter {
    * @param {any} cause The cause of the level up, defined when a function affecting the xp is called
    * @returns {number} The new amount of user's XP
    */
-  public async setXP(
+  public static async setXP(
     userID: string | Snowflake,
     guildID: string | Snowflake,
     xp: number,
@@ -182,7 +178,7 @@ export class DiscordRankup extends EventEmitter {
     const level = Math.floor(0.05 * Math.sqrt(xp));
     // Emit levelUp event if the user levels up
     if (level > memberToUpdate.Level && emitEvent) {
-      this.emit('levelUp', memberToUpdate, cause);
+      this.client.emit('levelUp', memberToUpdate, cause);
     }
     memberToUpdate.Level = level;
     // Save the member to the database
@@ -190,7 +186,7 @@ export class DiscordRankup extends EventEmitter {
     return memberToUpdate.XP;
   }
 
-  public async resetXP(
+  public static async resetXP(
     userID: string | Snowflake,
     guildID: string | Snowflake,
   ): Promise<number> {
@@ -204,7 +200,7 @@ export class DiscordRankup extends EventEmitter {
    * @returns {XPMember} The member's XPMember object
    * @description Get the member's XP
    */
-  public async fetch(
+  public static async fetch(
     userID: string | Snowflake,
     guildID: string | Snowflake,
   ): Promise<XPMember | null> {

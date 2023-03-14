@@ -1,12 +1,12 @@
-import { DiscordRankup } from '..';
+import xp from '..';
 import dotenv from 'dotenv';
+import { Client } from 'discord.js';
 
 describe('DiscordRankup', () => {
-  const xp = new DiscordRankup();
 
   beforeAll(() => {
     dotenv.config();
-    xp.connect(process.env.RANKUP_DB!);
+    xp.init(process.env.RANKUP_DB!, new Client({ intents: [] }));
   });
 
   afterAll(() => {

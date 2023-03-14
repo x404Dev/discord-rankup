@@ -25,12 +25,12 @@ pnpm add discord-rankup
 
 ## Basic Usage
 
-First you need to connect to your MongoDB database.
+First you need to initiate the Rankup Client.
 
 ```js
-const { DiscordRankup } = require('discord-rankup');
+const xp = require('discord-rankup');
 
-const xp = new DiscordRankup("MONGOURL")
+xp.init("MONGOURL", client);
 ```
 
 Once that is done, you can start managing the user's XP.
@@ -82,7 +82,7 @@ Discord-RankUP has a few events that you can use.
 - (More to come)
 
 ```js
-xp.on('levelUp', (XPMember, cause) => {
+client.on('levelUp', (XPMember, cause) => {
     // Do something
 })
 ```
