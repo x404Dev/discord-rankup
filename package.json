@@ -4,6 +4,14 @@
   "description": "A simple discord.js xp and level system",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
+  "homepage": "https://discord-rankup.js.org/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/x404dev/discord-rankup"
+  },
+  "bugs": {
+    "url": "https://github.com/x404dev/discord-rankup/issues"
+  },
   "files": [
     "lib/**/*"
   ],
