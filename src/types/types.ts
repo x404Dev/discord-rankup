@@ -1,25 +1,30 @@
 import { BaseInteraction, Message } from 'discord.js';
 
+
+/**
+ * The model of a member in the database
+ * @interface XPMember
+ * @description The model of a member in the database
+ */
 export interface XPMember {
+  /** The ID of the User */
   UserID: string;
+  /** The ID of the Guild */
   GuildID: string;
+  /** The amount of XP the user has */
   XP: number;
+  /** The level of the user */
   Level: number;
 }
 
 /**
- * @event DiscordRankup#levelUp
- * @param {XPMember} member The member who leveled up
- * @param {any} cause The cause of the level up, defined when a function affecting the xp is called
+ * The events emitted by DiscordRankup
+ * @interface RankupEvents
+ * @description The events emitted by DiscordRankup
  */
-
-/**
- * @event DiscordRankup#rankUp
- * @param {XPMember} member The member who ranked up
- * @param {any} cause The cause of the rank up, defined when a function affecting the xp is called
- */
-
 export interface RankupEvents {
+  /** The event emitted when a user levels up */
   levelUp: [member: XPMember, cause?: any];
+  /** The event emitted when a user ranks up */
   rankUp: [member: XPMember, cause?: any];
 }

@@ -3,12 +3,29 @@ import xpmember from './models/xpmember';
 import { XPMember } from './types/types';
 import { Client, Snowflake } from 'discord.js';
 
+/**
+ * The main class for DiscordRankup, acts as a manager.
+ * @class DiscordRankup
+ * @description The main class for DiscordRankup, acts as a manager.
+ */
 export default class DiscordRankup {
+  /**
+   * The URL to the MongoDB database
+   * @type {string}
+   */
   private static mongoURL: string;
+  /**
+   * The Discord.js client
+   * @type {Client}
+   */
   private static client: Client;
   /**
+   * Initialize the package and connect to the database
    * @param url The URL to the MongoDB database
-   * @returns mongoose connection
+   * @param client The Discord.js client
+   * @param options The options to connect to the database
+   * @returns {Promise<void>} The promise to connect to the database
+   * @description Initialize the package and connect to the database
    */
   public static async init(
     url: string,
@@ -22,6 +39,8 @@ export default class DiscordRankup {
   }
 
   /**
+   * Disconnects from the database
+   * @returns {Promise<void>} The promise to disconnect from the database
    * @description Disconnects from the database
    */
   public static async disconnect() {
@@ -190,6 +209,13 @@ export default class DiscordRankup {
     return memberToUpdate.XP;
   }
 
+  /**
+   * Reset the user's XP to 0
+   * @param {string} userID The ID of the user
+   * @param {string} guildID The ID of the guild
+   * @returns {number} The new amount of user's XP
+   * @description Reset the user's XP to 0
+   */
   public static async resetXP(
     userID: string | Snowflake,
     guildID: string | Snowflake,
