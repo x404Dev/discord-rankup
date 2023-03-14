@@ -18,8 +18,8 @@
   "scripts": {
     "build": "tsc",
     "test": "jest --config jestconfig.json",
-    "compodoc": "npx compodoc -p tsconfig.doc.json -t laravel -d ./docs",
-    "compodoc:serve": "npx compodoc -p tsconfig.doc.json --theme laravel -s",
+    "compodoc": "npx compodoc -p tsconfig.doc.json --theme laravel -d ./docs",
+    "compodoc:serve": "npx compodoc -p tsconfig.doc.json --theme laravel -d ./docs -s",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
     "format": "prettier --write \"src/**/*.ts\"",
