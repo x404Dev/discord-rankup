@@ -1,6 +1,6 @@
 {
   "name": "discord-rankup",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "A nice greeter",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -22,7 +22,13 @@
   },
   "author": "x404dev",
   "license": "ISC",
-  "keywords": ["discord", "discord.js", "ranks", "levels", "xp"],
+  "keywords": [
+    "discord",
+    "discord.js",
+    "ranks",
+    "levels",
+    "xp"
+  ],
   "devDependencies": {
     "@types/jest": "^29.4.1",
     "@typescript-eslint/eslint-plugin": "^5.55.0",
