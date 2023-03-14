@@ -23,6 +23,10 @@ yarn add discord-rankup
 pnpm add discord-rankup
 ```
 
+## Documentation
+
+View the documentation [here](https://discord-rankup.js.org)
+
 ## Basic Usage
 
 First you need to initiate the Rankup Client.
