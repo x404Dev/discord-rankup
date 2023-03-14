@@ -53,10 +53,10 @@ export class DiscordRankup extends EventEmitter {
   }
 
   /**
+   * Add XP to the user and emit the levelUp event if the user levels up
    * @param userID The ID of the user
    * @param guildID The ID of the guild
    * @returns The new amount of user's XP
-   * @description Add XP to the user
    */
   public async addXP(
     userID: string | Snowflake,
@@ -89,6 +89,7 @@ export class DiscordRankup extends EventEmitter {
   }
 
   /**
+   * Remove XP from the user and emit the levelUp event if the user levels up
    * @param userID The ID of the user
    * @param guildID The ID of the guild
    * @param xp The amount of XP to remove
@@ -127,6 +128,16 @@ export class DiscordRankup extends EventEmitter {
     return memberToUpdate.XP;
   }
 
+
+  /**
+   * Set the user's XP and emit the levelUp event if the user levels up
+   * @param {string} userID The ID of the user
+   * @param {string} guildID The ID of the guild
+   * @param {number} xp The amount of XP to set
+   * @param {Boolean} emitEvent Whether to emit the levelUp event
+   * @param {any} cause The cause of the level up, defined when a function affecting the xp is called
+   * @returns {number} The new amount of user's XP
+   */
   public async setXP(
     userID: string | Snowflake,
     guildID: string | Snowflake,
@@ -159,9 +170,10 @@ export class DiscordRankup extends EventEmitter {
   }
 
   /**
-   * @param userID The ID of the user
-   * @param guildID The ID of the guild
-   * @returns The members XPMember object
+   * fetch a member from the database
+   * @param {string} userID The ID of the user
+   * @param {string} guildID The ID of the guild
+   * @returns {XPMember} The member's XPMember object
    * @description Get the member's XP
    */
   public async fetch(
