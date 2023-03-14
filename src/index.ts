@@ -10,7 +10,11 @@ export default class DiscordRankup {
    * @param url The URL to the MongoDB database
    * @returns mongoose connection
    */
-  public static async init(url: string, client: Client, options?: mongoose.ConnectOptions) {
+  public static async init(
+    url: string,
+    client: Client,
+    options?: mongoose.ConnectOptions,
+  ) {
     // Connect to the database
     this.mongoURL = url;
     this.client = client;
@@ -95,7 +99,7 @@ export default class DiscordRankup {
     }
     // Update the member's XP
     memberToUpdate.XP += xp;
-    const level = Math.floor(0.05 * Math.sqrt(xp));
+    const level = this.getLevelFromXP(memberToUpdate.XP);
     // Emit levelUp event if the user levels up
     if (level > memberToUpdate.Level && emitEvent) {
       this.client.emit('levelUp', memberToUpdate, cause);
@@ -135,7 +139,7 @@ export default class DiscordRankup {
     }
     // Update the member's XP, if the user has less XP than the amount to remove, set it to 0
     memberToUpdate.XP = memberToUpdate.XP - xp < 0 ? 0 : memberToUpdate.XP - xp;
-    const level = Math.floor(0.05 * Math.sqrt(xp));
+    const level = this.getLevelFromXP(memberToUpdate.XP);
     // Emit levelUp event if the user levels up
     if (level > memberToUpdate.Level && emitEvent) {
       this.client.emit('levelUp', memberToUpdate, cause);
@@ -175,7 +179,7 @@ export default class DiscordRankup {
     }
     // Update the member's XP
     memberToUpdate.XP = xp;
-    const level = Math.floor(0.05 * Math.sqrt(xp));
+    const level = this.getLevelFromXP(xp);
     // Emit levelUp event if the user levels up
     if (level > memberToUpdate.Level && emitEvent) {
       this.client.emit('levelUp', memberToUpdate, cause);
@@ -194,6 +198,16 @@ export default class DiscordRankup {
   }
 
   /**
+   * Returns a level from a specified XP amount
+   * @param {number} xp The XP amount
+   * @returns {number} The level
+   * @description Returns a level from a specified XP amount
+   */
+  public static getLevelFromXP(xp: number): number {
+    return Math.floor(0.05 * Math.sqrt(xp));
+  }
+
+  /**
    * fetch a member from the database
    * @param {string} userID The ID of the user
    * @param {string} guildID The ID of the guild
@@ -208,6 +222,5 @@ export default class DiscordRankup {
     return member;
   }
 }
-
 
 export * from './types/types';
