@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import xpmember from './models/xpmember';
-import { XPMember } from './types/types';
+import { LeaderboardQuery, XPMember } from './types/types';
 import { Client, Snowflake } from 'discord.js';
 
 /**
@@ -230,7 +230,7 @@ export default class DiscordRankup {
    * @description Returns a level from a specified XP amount
    */
   public static getLevelFromXP(xp: number): number {
-    return Math.floor(0.05 * Math.sqrt(xp));
+    return Math.floor(0.1 * Math.sqrt(xp));
   }
 
   /**
@@ -246,6 +246,41 @@ export default class DiscordRankup {
   ): Promise<XPMember | null> {
     const member = xpmember.findOne({ UserID: userID, GuildID: guildID });
     return member;
+  }
+
+  /**
+   * Fetch the leaderboard
+   * @param {string} guildID The ID of the guild
+   * @param {LeaderboardQuery} options The options for the leaderboard
+   * @returns {XPMember[]} The leaderboard
+   * @description Fetch the leaderboard
+   */
+  public static async fetchLeaderboard(
+    guildID: string | Snowflake,
+    options?: LeaderboardQuery,
+  ): Promise<XPMember[]> {
+    // Fetch the members with the most xp within range and exclude the ids from options.exclude
+
+    const query = {
+      GuildID: guildID,
+      UserID: { $nin: options?.exclude || [] },
+    };
+
+    const leaderboard: XPMember[] = await xpmember
+      .find(query)
+      .sort({ XP: -1 })
+      .limit(options?.limit || 10)
+      .skip(options?.skip || 0)
+      .exec();
+
+    if (options?.include) {
+      options.include.forEach(async (id) => {
+        const member = await this.fetch(id, guildID);
+        if (member && !leaderboard.includes(member)) leaderboard.push(member);
+      });
+    }
+
+    return leaderboard.sort((a, b) => b.XP - a.XP);
   }
 }
 

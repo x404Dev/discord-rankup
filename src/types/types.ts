@@ -18,6 +18,22 @@ export interface XPMember {
 }
 
 /**
+ * The options for a leaderboard query to the database
+ * @interface LeaderboardQuery
+ * @description The options for a leaderboard query to the database
+ */ 
+export interface LeaderboardQuery {
+  /** The amount of members to fetch */
+  limit?: number;
+  /** The amount of members to skip */
+  skip?: number;
+  /** list of userIDs to exclude from the leaderboard if any */
+  exclude?: string[];
+  /** list of userIDs to include in the leaderboard if any */
+  include?: string[];
+}
+
+/**
  * The events emitted by DiscordRankup
  * @interface RankupEvents
  * @description The events emitted by DiscordRankup
