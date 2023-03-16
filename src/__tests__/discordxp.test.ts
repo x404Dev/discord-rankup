@@ -49,14 +49,33 @@ describe('DiscordRankup', () => {
 
   //test leaderboard
   test('leaderboard should return a list of users', async () => {
-    await xp.setXP('leaderboard1', 'guild1', 10);
-    await xp.setXP('leaderboard2', 'guild1', 5);
-    await xp.setXP('leaderboard3', 'guild1', 100);
-    await xp.setXP('leaderboard4', 'guild1', 43);
-    await xp.setXP('leaderboard5', 'guild1', 9);
-    await xp.setXP('leaderboard6', 'guild1', 46);
+    await xp.setXP('leaderboard1', 'guild2', 10);
+    await xp.setXP('leaderboard2', 'guild2', 5);
+    await xp.setXP('leaderboard3', 'guild2', 100);
+    await xp.setXP('leaderboard4', 'guild2', 43);
+    await xp.setXP('leaderboard5', 'guild2', 9);
+    await xp.setXP('leaderboard6', 'guild2', 46);
 
-    const leaderboard = await xp.fetchLeaderboard('guild1');
+    const leaderboard = await xp.fetchLeaderboard('guild2');
     expect(leaderboard).toHaveLength(6);
+  });
+
+  //test requiredXP and getLevelFromXP
+  test('requireXP and getLevelFromXP should return the correct values', async () => {
+    const level = xp.getLevelFromXP(10500);
+    const requiredXP = xp.requiredXP(level);
+    expect(level).toBe(10);
+    expect(requiredXP).toBe(10000);
+  });
+
+  //test getCardData
+  test('getCardData should return the correct values', async () => {
+    await xp.setXP('cardData', 'guild1', 10500);
+    const cardData = await xp.getCardData('cardData', 'guild1');
+    expect(cardData.level).toBe(10);
+    expect(cardData.requiredXP).toBe(12100);
+    expect(cardData.currentXP).toBe(10500);
+    expect(cardData.progressXP).toBe(500);
+    expect(cardData.missingXP).toBe(1600);
   });
 });

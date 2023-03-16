@@ -33,6 +33,24 @@ export interface LeaderboardQuery {
 }
 
 /**
+ * The return value of the getCardData function
+ * @interface XPCardData
+ * @description The return value of the getCardData function
+ */
+export interface XPCardData {
+  /** the total amount of xp required for the user to level up */
+  requiredXP: number; //600
+  /** the current amount of xp the user has */
+  currentXP: number; // 550
+  /** the current level of the user */
+  level: number; // 5 starts at 475
+  /** The amount of XP the user gained since his last level up */
+  progressXP: number; // 75
+  /** The amount of XP the user needs to level up */
+  missingXP: number; // 50
+}
+
+/**
  * The events emitted by DiscordRankup
  * @interface RankupEvents
  * @description The events emitted by DiscordRankup
@@ -40,6 +58,4 @@ export interface LeaderboardQuery {
 export interface RankupEvents {
   /** The event emitted when a user levels up */
   levelUp: [member: XPMember, cause?: any];
-  /** The event emitted when a user ranks up */
-  rankUp: [member: XPMember, cause?: any];
 }

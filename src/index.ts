@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import xpmember from './models/xpmember';
-import { LeaderboardQuery, XPMember } from './types/types';
+import { LeaderboardQuery, XPCardData, XPMember } from './types/types';
 import { Client, Snowflake } from 'discord.js';
 
 /**
@@ -43,7 +43,7 @@ export default class DiscordRankup {
    * @returns {Promise<void>} The promise to disconnect from the database
    * @description Disconnects from the database
    */
-  public static async disconnect() {
+  public static async disconnect(): Promise<void> {
     return await mongoose.disconnect();
   }
 
@@ -231,6 +231,48 @@ export default class DiscordRankup {
    */
   public static getLevelFromXP(xp: number): number {
     return Math.floor(0.1 * Math.sqrt(xp));
+  }
+
+  /**
+   * Returns the XP required to reach a specified level
+   * @param {number} level The level
+   * @returns {number} The XP required
+   */
+  public static requiredXP(level: number): number {
+    return (level / 0.1) ** 2;
+  }
+
+  /**
+   * Returns the user's card data
+   */
+  public static async getCardData(
+    userID: string | Snowflake,
+    guildID: string | Snowflake,
+  ): Promise<XPCardData> {
+    const member = await xpmember.findOne({ UserID: userID, GuildID: guildID });
+
+    let memberCard: XPCardData;
+
+    if (!member) {
+      const newMember = await this.createMember(userID, guildID);
+      if (!newMember) throw new Error("Couldn't create member!");
+      memberCard = {
+        requiredXP: this.requiredXP(newMember.Level + 1),
+        currentXP: newMember.XP,
+        level: newMember.Level,
+        progressXP: newMember.XP - this.requiredXP(newMember.Level),
+        missingXP: this.requiredXP(newMember.Level + 1) - newMember.XP,
+      };
+    } else {
+      memberCard = {
+        requiredXP: this.requiredXP(member.Level + 1),
+        currentXP: member.XP,
+        level: member.Level,
+        progressXP: member.XP - this.requiredXP(member.Level),
+        missingXP: this.requiredXP(member.Level + 1) - member.XP,
+      };
+    }
+    return memberCard;
   }
 
   /**

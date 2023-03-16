@@ -48,7 +48,7 @@
   <li>Interfaces</li>
   <li
   >
-  LeaderboardQuery</li>
+  XPCardData</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -74,7 +74,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>The options for a leaderboard query to the database</p>
+                <p>The return value of the getCardData function</p>
 
             </p>
 
@@ -92,31 +92,33 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
-                                            <span class="modifier">Optional</span>
-                                        <a href="#exclude" 
+                                        <a href="#currentXP" 
 >
-                                            exclude
+                                            currentXP
                                         </a>
                                 </li>
                                 <li>
-                                            <span class="modifier">Optional</span>
-                                        <a href="#include" 
+                                        <a href="#level" 
 >
-                                            include
+                                            level
                                         </a>
                                 </li>
                                 <li>
-                                            <span class="modifier">Optional</span>
-                                        <a href="#limit" 
+                                        <a href="#missingXP" 
 >
-                                            limit
+                                            missingXP
                                         </a>
                                 </li>
                                 <li>
-                                            <span class="modifier">Optional</span>
-                                        <a href="#skip" 
+                                        <a href="#progressXP" 
 >
-                                            skip
+                                            progressXP
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#requiredXP" 
+>
+                                            requiredXP
                                         </a>
                                 </li>
                             </ul>
@@ -134,9 +136,9 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="exclude"></a>
-                                        <span class="name "><b>exclude</b>
-                                            <a href="#exclude">
+                                        <a name="currentXP"></a>
+                                        <span class="name "><b>currentXP</b>
+                                            <a href="#currentXP">
                                                 <span class="icon ion-ios-link"></span>
                                             </a>
                                         </span>
@@ -144,95 +146,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>exclude:     <code>string[]</code>
-</code>
-                                    </td>
-                                </tr>
-
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>    <code>string[]</code>
-
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Optional</i>
-                                        </td>
-                                    </tr>
-
-
-
-
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-description"><p>list of userIDs to exclude from the leaderboard if any</p>
-</div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="include"></a>
-                                        <span class="name "><b>include</b>
-                                            <a href="#include">
-                                                <span class="icon ion-ios-link"></span>
-                                            </a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>include:     <code>string[]</code>
-</code>
-                                    </td>
-                                </tr>
-
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>    <code>string[]</code>
-
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Optional</i>
-                                        </td>
-                                    </tr>
-
-
-
-
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-description"><p>list of userIDs to include in the leaderboard if any</p>
-</div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="limit"></a>
-                                        <span class="name "><b>limit</b>
-                                            <a href="#limit">
-                                                <span class="icon ion-ios-link"></span>
-                                            </a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>limit:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                        <code>currentXP:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -245,18 +159,13 @@
                                         </td>
                                     </tr>
 
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Optional</i>
-                                        </td>
-                                    </tr>
 
 
 
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>The amount of members to fetch</p>
+                                    <div class="io-description"><p>the current amount of xp the user has</p>
 </div>
                                 </td>
                             </tr>
@@ -266,9 +175,9 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="skip"></a>
-                                        <span class="name "><b>skip</b>
-                                            <a href="#skip">
+                                        <a name="level"></a>
+                                        <span class="name "><b>level</b>
+                                            <a href="#level">
                                                 <span class="icon ion-ios-link"></span>
                                             </a>
                                         </span>
@@ -276,7 +185,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>skip:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                        <code>level:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -289,18 +198,130 @@
                                         </td>
                                     </tr>
 
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Optional</i>
-                                        </td>
-                                    </tr>
 
 
 
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>The amount of members to skip</p>
+                                    <div class="io-description"><p>the current level of the user</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="missingXP"></a>
+                                        <span class="name "><b>missingXP</b>
+                                            <a href="#missingXP">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>missingXP:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>The amount of XP the user needs to level up</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="progressXP"></a>
+                                        <span class="name "><b>progressXP</b>
+                                            <a href="#progressXP">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>progressXP:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>The amount of XP the user gained since his last level up</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="requiredXP"></a>
+                                        <span class="name "><b>requiredXP</b>
+                                            <a href="#requiredXP">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>requiredXP:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>the total amount of xp required for the user to level up</p>
 </div>
                                 </td>
                             </tr>
@@ -409,7 +430,7 @@ export interface RankupEvents {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
-            var COMPODOC_CURRENT_PAGE_URL = 'LeaderboardQuery.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'XPCardData.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

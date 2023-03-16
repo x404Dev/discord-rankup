@@ -73,6 +73,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/RankupEvents.html" data-type="entity-link" >RankupEvents</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/XPCardData.html" data-type="entity-link" >XPCardData</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/XPMember.html" data-type="entity-link" >XPMember</a>
                             </li>
                         </ul>

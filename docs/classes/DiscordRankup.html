@@ -144,6 +144,11 @@
                             </li>
                             <li>
                                     <span class="modifier">Static</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#getCardData" >getCardData</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
                                 <a href="#getLevelFromXP" >getLevelFromXP</a>
                             </li>
                             <li>
@@ -155,6 +160,10 @@
                                     <span class="modifier">Static</span>
                                     <span class="modifier">Async</span>
                                 <a href="#removeXP" >removeXP</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#requiredXP" >requiredXP</a>
                             </li>
                             <li>
                                     <span class="modifier">Static</span>
@@ -643,7 +652,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>unknown</code>
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -677,8 +686,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="243"
-                            class="link-to-prism">src/index.ts:243</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="285"
+                            class="link-to-prism">src/index.ts:285</a></div>
                 </td>
             </tr>
 
@@ -773,8 +782,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="258"
-                            class="link-to-prism">src/index.ts:258</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="300"
+                            class="link-to-prism">src/index.ts:300</a></div>
                 </td>
             </tr>
 
@@ -841,6 +850,92 @@
                     <div class="io-description">
                         <p>The leaderboard</p>
 
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getCardData"></a>
+                    <span class="name">
+                        <span class="modifier">Static</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>getCardData</b></span>
+                        <a href="#getCardData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getCardData(userID: string | Snowflake, guildID: string | Snowflake)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="248"
+                            class="link-to-prism">src/index.ts:248</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Returns the user&#39;s card data</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userID</td>
+                                    <td>
+                                            <code>string | Snowflake</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>guildID</td>
+                                    <td>
+                                            <code>string | Snowflake</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/XPCardData.html" target="_self" >Promise&lt;XPCardData&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
                     </div>
                 </td>
             </tr>
@@ -1196,6 +1291,85 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="requiredXP"></a>
+                    <span class="name">
+                        <span class="modifier">Static</span>
+                        <span ><b>requiredXP</b></span>
+                        <a href="#requiredXP"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>requiredXP(level: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="241"
+                            class="link-to-prism">src/index.ts:241</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Returns the XP required to reach a specified level</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>level</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The level</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The XP required</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="resetXP"></a>
                     <span class="name">
                         <span class="modifier">Static</span>
@@ -1455,7 +1629,7 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import mongoose from &#x27;mongoose&#x27;;
 import xpmember from &#x27;./models/xpmember&#x27;;
-import { LeaderboardQuery, XPMember } from &#x27;./types/types&#x27;;
+import { LeaderboardQuery, XPCardData, XPMember } from &#x27;./types/types&#x27;;
 import { Client, Snowflake } from &#x27;discord.js&#x27;;
 
 /**
@@ -1498,7 +1672,7 @@ export default class DiscordRankup {
    * @returns {Promise&lt;void&gt;} The promise to disconnect from the database
    * @description Disconnects from the database
    */
-  public static async disconnect() {
+  public static async disconnect(): Promise&lt;void&gt; {
     return await mongoose.disconnect();
   }
 
@@ -1686,6 +1860,48 @@ export default class DiscordRankup {
    */
   public static getLevelFromXP(xp: number): number {
     return Math.floor(0.1 * Math.sqrt(xp));
+  }
+
+  /**
+   * Returns the XP required to reach a specified level
+   * @param {number} level The level
+   * @returns {number} The XP required
+   */
+  public static requiredXP(level: number): number {
+    return ((level / 0.1) ** 2)
+  }
+
+  /**
+   * Returns the user&#x27;s card data
+   */
+  public static async getCardData(
+    userID: string | Snowflake,
+    guildID: string | Snowflake,
+  ): Promise&lt;XPCardData&gt; {
+    const member &#x3D; await xpmember.findOne({ UserID: userID, GuildID: guildID });
+
+    let memberCard: XPCardData;
+
+    if (!member) {
+      const newMember &#x3D; await this.createMember(userID, guildID);
+      if (!newMember) throw new Error(&quot;Couldn&#x27;t create member!&quot;);
+      memberCard &#x3D; {
+        requiredXP: this.requiredXP(newMember.Level + 1),
+        currentXP: newMember.XP,
+        level: newMember.Level,
+        progressXP: newMember.XP - this.requiredXP(newMember.Level),
+        missingXP: this.requiredXP(newMember.Level + 1) - newMember.XP,
+      };
+    } else {
+      memberCard &#x3D; {
+        requiredXP: this.requiredXP(member.Level + 1),
+        currentXP: member.XP,
+        level: member.Level,
+        progressXP: member.XP - this.requiredXP(member.Level),
+        missingXP: this.requiredXP(member.Level + 1) - member.XP,
+      };
+    }
+    return memberCard;
   }
 
   /**
