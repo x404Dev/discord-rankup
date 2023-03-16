@@ -1,6 +1,5 @@
 import { BaseInteraction, Message } from 'discord.js';
 
-
 /**
  * The model of a member in the database
  * @interface XPMember
@@ -21,7 +20,7 @@ export interface XPMember {
  * The options for a leaderboard query to the database
  * @interface LeaderboardQuery
  * @description The options for a leaderboard query to the database
- */ 
+ */
 export interface LeaderboardQuery {
   /** The amount of members to fetch */
   limit?: number;

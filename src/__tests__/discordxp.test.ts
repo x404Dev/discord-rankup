@@ -55,7 +55,7 @@ describe('DiscordRankup', () => {
     await xp.setXP('leaderboard4', 'guild1', 43);
     await xp.setXP('leaderboard5', 'guild1', 9);
     await xp.setXP('leaderboard6', 'guild1', 46);
-    
+
     const leaderboard = await xp.fetchLeaderboard('guild1');
     expect(leaderboard).toHaveLength(6);
   });
