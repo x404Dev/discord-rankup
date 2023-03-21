@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose, { ConnectOptions } from 'mongoose';
 import xpmember from './models/xpmember';
 import { LeaderboardQuery, XPCardData, XPMember } from './types/types';
 import { Client, Snowflake } from 'discord.js';
@@ -6,7 +6,6 @@ import { Client, Snowflake } from 'discord.js';
 /**
  * The main class for DiscordRankup, acts as a manager.
  * @class DiscordRankup
- * @description The main class for DiscordRankup, acts as a manager.
  */
 export default class DiscordRankup {
   /**
@@ -21,11 +20,10 @@ export default class DiscordRankup {
   private static client: Client;
   /**
    * Initialize the package and connect to the database
-   * @param url The URL to the MongoDB database
-   * @param client The Discord.js client
-   * @param options The options to connect to the database
+   * @param {string} url The URL to the MongoDB database
+   * @param {Client} client The Discord.js client
+   * @param {ConnectOptions} options The options to connect to the database
    * @returns {Promise<void>} The promise to connect to the database
-   * @description Initialize the package and connect to the database
    */
   public static async init(
     url: string,
@@ -41,7 +39,6 @@ export default class DiscordRankup {
   /**
    * Disconnects from the database
    * @returns {Promise<void>} The promise to disconnect from the database
-   * @description Disconnects from the database
    */
   public static async disconnect(): Promise<void> {
     return await mongoose.disconnect();
@@ -52,7 +49,6 @@ export default class DiscordRankup {
    * @param {string} userID The ID of the user
    * @param {string} guildID The ID of the guild
    * @returns {XPMember} The member's XP
-   * @description Create a member in the database if they don't exist
    */
   public static async createMember(
     userID: string | Snowflake,
@@ -92,12 +88,12 @@ export default class DiscordRankup {
 
   /**
    * Add XP to the user and emit the levelUp event if the user levels up
-   * @param userID The ID of the user
-   * @param guildID The ID of the guild
-   * @param xp The amount of XP to add
-   * @param emitEvent Whether to emit the levelUp event
-   * @param cause The cause of the level up, defined when a function affecting the xp is called
-   * @returns The new amount of user's XP
+   * @param {(string|Snowflake)} userID The ID of the user
+   * @param {(string|Snowflake)} guildID The ID of the guild
+   * @param {number} xp The amount of XP to add
+   * @param {boolean} emitEvent Whether to emit the levelUp event
+   * @param {any} cause The cause of the level up, defined when a function affecting the xp is called
+   * @returns {Promise<number>} The new amount of user's XP
    */
   public static async addXP(
     userID: string | Snowflake,
@@ -131,13 +127,12 @@ export default class DiscordRankup {
 
   /**
    * Remove XP from the user and emit the levelUp event if the user levels up
-   * @param userID The ID of the user
-   * @param guildID The ID of the guild
-   * @param xp The amount of XP to remove
-   * @param emitEvent Whether to emit the levelUp event
-   * @param cause The cause of the level up, defined when a function affecting the xp is called
-   * @returns The new amount of user's XP
-   * @description Remove XP from the user
+   * @param {(string|Snowflake)} userID The ID of the user
+   * @param {(string|Snowflake)} guildID The ID of the guild
+   * @param {number} xp The amount of XP to remove
+   * @param {boolean} emitEvent Whether to emit the levelUp event
+   * @param {any} cause The cause of the level up, defined when a function affecting the xp is called
+   * @returns {Promise<number>} The new amount of user's XP
    */
   public static async removeXP(
     userID: string | Snowflake,
@@ -214,7 +209,6 @@ export default class DiscordRankup {
    * @param {string} userID The ID of the user
    * @param {string} guildID The ID of the guild
    * @returns {number} The new amount of user's XP
-   * @description Reset the user's XP to 0
    */
   public static async resetXP(
     userID: string | Snowflake,
@@ -227,7 +221,6 @@ export default class DiscordRankup {
    * Returns a level from a specified XP amount
    * @param {number} xp The XP amount
    * @returns {number} The level
-   * @description Returns a level from a specified XP amount
    */
   public static getLevelFromXP(xp: number): number {
     return Math.floor(0.1 * Math.sqrt(xp));
@@ -244,6 +237,9 @@ export default class DiscordRankup {
 
   /**
    * Returns the user's card data
+   * @param {(string|Snowflake)} userID The ID of the user
+   * @param {(string|Snowflake)} guildID The ID of the guild
+   * @returns {Promise<XPCardData>} The user's card data
    */
   public static async getCardData(
     userID: string | Snowflake,
@@ -280,7 +276,6 @@ export default class DiscordRankup {
    * @param {string} userID The ID of the user
    * @param {string} guildID The ID of the guild
    * @returns {XPMember} The member's XPMember object
-   * @description Get the member's XP
    */
   public static async fetch(
     userID: string | Snowflake,
@@ -295,7 +290,6 @@ export default class DiscordRankup {
    * @param {string} guildID The ID of the guild
    * @param {LeaderboardQuery} options The options for the leaderboard
    * @returns {XPMember[]} The leaderboard
-   * @description Fetch the leaderboard
    */
   public static async fetchLeaderboard(
     guildID: string | Snowflake,

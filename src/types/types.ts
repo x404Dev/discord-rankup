@@ -1,9 +1,6 @@
-import { BaseInteraction, Message } from 'discord.js';
-
 /**
  * The model of a member in the database
- * @interface XPMember
- * @description The model of a member in the database
+ * @typedef XPMember
  */
 export interface XPMember {
   /** The ID of the User */
