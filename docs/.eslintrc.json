@@ -1,0 +1,18 @@
+{
+	"root": true,
+	"extends": ["marine/prettier/node", "marine/prettier/vue"],
+	"parserOptions": {
+		"project": "./tsconfig.eslint.json"
+	},
+	"env": {
+		"jest": true
+	},
+	"rules": {
+		"vue/multi-word-component-names": [
+			2,
+			{
+				"ignores": ["[...all]", "Logo", "Spinner"]
+			}
+		]
+	}
+}

@@ -18,9 +18,9 @@
   "scripts": {
     "build": "tsc",
     "test": "jest --config jestconfig.json",
-    "docs": "docgen --jsdoc jsdoc.json --source src/*.ts src/**/*.ts --custom documentation/custom.yml --output documentation/docs.json",
-    "lint": "eslint . --ext .ts",
-    "lint:fix": "eslint . --ext .ts --fix",
+    "docs": "npx typedoc --entryPointStrategy expand ./src --exclude '**/*+.test.ts' --json .tmp/typedoc-out.json && ts-node ./docs",
+    "lint": "eslint ./src --ext .ts --ignore-pattern **/*.test.ts",
+    "lint:fix": "eslint ./src --ext .ts --fix --ignore-pattern **/*.test.ts",
     "format": "prettier --write \"src/**/*.ts\"",
     "prepare": "npm run build",
     "preversion": "npm run lint && npm run build && npm run test",
@@ -37,14 +37,10 @@
     "xp"
   ],
   "devDependencies": {
-    "@babel/cli": "^7.14.8",
-    "@babel/core": "^7.15.0",
-    "@babel/preset-env": "^7.15.0",
-    "@babel/preset-typescript": "^7.15.0",
     "@types/jest": "^29.4.1",
     "@typescript-eslint/eslint-plugin": "^5.55.0",
     "@typescript-eslint/parser": "^5.55.0",
-    "discord.js-docgen": "github:discordjs/docgen#ts-patch",
+    "ts-docgen": "github:dbots-pkg/ts-docgen#main",
     "dotenv": "^16.0.3",
     "eslint": "^8.36.0",
     "eslint-config-prettier": "^8.7.0",
@@ -53,6 +49,7 @@
     "jsdoc-babel": "^0.5.0",
     "prettier": "^2.8.4",
     "ts-jest": "^29.0.5",
+    "typedoc": "^0.23.28",
     "typescript": "^4.9.5"
   },
   "dependencies": {

@@ -1,6 +1,5 @@
 /**
- * The model of a member in the database
- * @typedef XPMember
+ * @typedef {object} XPMember
  */
 export interface XPMember {
   /** The ID of the User */
@@ -14,9 +13,7 @@ export interface XPMember {
 }
 
 /**
- * The options for a leaderboard query to the database
- * @interface LeaderboardQuery
- * @description The options for a leaderboard query to the database
+ * @typedef {object} LeaderboardQuery
  */
 export interface LeaderboardQuery {
   /** The amount of members to fetch */
@@ -30,29 +27,17 @@ export interface LeaderboardQuery {
 }
 
 /**
- * The return value of the getCardData function
- * @interface XPCardData
- * @description The return value of the getCardData function
+ * @typedef {object} XPCardData
  */
 export interface XPCardData {
-  /** the total amount of xp required for the user to level up */
-  requiredXP: number; //600
-  /** the current amount of xp the user has */
-  currentXP: number; // 550
-  /** the current level of the user */
-  level: number; // 5 starts at 475
-  /** The amount of XP the user gained since his last level up */
-  progressXP: number; // 75
-  /** The amount of XP the user needs to level up */
-  missingXP: number; // 50
-}
-
-/**
- * The events emitted by DiscordRankup
- * @interface RankupEvents
- * @description The events emitted by DiscordRankup
- */
-export interface RankupEvents {
-  /** The event emitted when a user levels up */
-  levelUp: [member: XPMember, cause?: any];
+  /** The amount of XP required to level up */
+  requiredXP: number;
+  /** The amount of XP the user currently has */
+  currentXP: number;
+  /** The level of the user */
+  level: number;
+  /** The amount of XP the user has progressed */
+  progressXP: number;
+  /** The amount of XP the user is missing to level up */
+  missingXP: number;
 }
