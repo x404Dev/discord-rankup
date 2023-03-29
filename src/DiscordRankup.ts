@@ -281,6 +281,11 @@ class DiscordRankup {
     guildID: string | Snowflake,
   ): Promise<XPMember | null> {
     const member = xpmember.findOne({ UserID: userID, GuildID: guildID });
+    if (!member) {
+      const newMember = await this.createMember(userID, guildID);
+      if (!newMember) throw new Error("Couldn't create member!");
+      return newMember;
+    }
     return member;
   }
 
