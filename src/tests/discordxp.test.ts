@@ -92,7 +92,5 @@ describe('DiscordRankup', () => {
     expect(rank1).toBe(1);
     expect(rank2).toBe(2);
     expect(rank3).toBe(3);
-    
-
   });
 });
