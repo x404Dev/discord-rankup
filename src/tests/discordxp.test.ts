@@ -78,4 +78,21 @@ describe('DiscordRankup', () => {
     expect(cardData.progressXP).toBe(500);
     expect(cardData.missingXP).toBe(1600);
   });
+
+  //test getRank
+  test('getRank should return the correct values', async () => {
+    await DiscordRankup.setXP('rank1', 'rankGuild', 10500);
+    await DiscordRankup.setXP('rank2', 'rankGuild', 10000);
+    await DiscordRankup.setXP('rank3', 'rankGuild', 5000);
+
+    const rank1 = await DiscordRankup.getRank('rank1', 'rankGuild');
+    const rank2 = await DiscordRankup.getRank('rank2', 'rankGuild');
+    const rank3 = await DiscordRankup.getRank('rank3', 'rankGuild');
+
+    expect(rank1).toBe(1);
+    expect(rank2).toBe(2);
+    expect(rank3).toBe(3);
+    
+
+  });
 });

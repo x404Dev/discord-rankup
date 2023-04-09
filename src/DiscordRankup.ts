@@ -194,7 +194,7 @@ class DiscordRankup {
     memberToUpdate.XP = xp;
     const level = this.getLevelFromXP(xp);
     // Emit levelUp event if the user levels up
-    if (level > memberToUpdate.Level && emitEvent) {
+    if (level > memberToUpdate.Level && emitEvent && this.client) {
       this.client.emit('levelUp', memberToUpdate, cause);
     }
     memberToUpdate.Level = level;
@@ -287,6 +287,24 @@ class DiscordRankup {
       return newMember;
     }
     return member;
+  }
+
+  public static async getRank(
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    userID: string | Snowflake,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    guildID: string | Snowflake,
+  ): Promise<number> {
+    //return the member's rank in the leaderboard
+    const leaderboard = await xpmember
+      .find({
+        GuildID: guildID,
+      })
+      .sort({ XP: -1 })
+      .exec();
+
+    console.log(leaderboard);
+    return leaderboard.findIndex((i) => i.UserID === userID) + 1;
   }
 
   /**
