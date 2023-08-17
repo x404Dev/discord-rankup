@@ -52,6 +52,6 @@
   },
   "dependencies": {
     "discord.js": "^14.8.0",
-    "mongoose": "^7.0.1"
+    "mongoose": "^7.3.3"
   }
 }
