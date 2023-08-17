@@ -1,6 +1,6 @@
 {
   "name": "discord-rankup",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A simple discord.js xp and level system",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
