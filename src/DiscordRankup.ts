@@ -303,7 +303,6 @@ class DiscordRankup {
       .sort({ XP: -1 })
       .exec();
 
-    console.log(leaderboard);
     return leaderboard.findIndex((i) => i.UserID === userID) + 1;
   }
 
