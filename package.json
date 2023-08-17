@@ -28,7 +28,7 @@
     "postversion": "git push && git push --tags"
   },
   "author": "x404dev",
-  "license": "ISC",
+  "license": "MIT",
   "keywords": [
     "discord",
     "discord.js",
