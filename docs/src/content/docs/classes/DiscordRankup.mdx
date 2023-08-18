@@ -1,0 +1,33 @@
+---
+title: DiscordRankup
+---
+
+import { LinkCard, CardGrid } from '@astrojs/starlight/components';
+
+Represents a DiscordRankup instance
+
+### Properties
+
+|property|type|description|
+|--------|----|-----------|
+|mongoURL|String|The URL to the MongoDB database|
+|client|Client|The Discord.js client|
+
+### Methods
+
+<CardGrid>
+	<LinkCard title="addXP" href="/functions/addxp/" />
+    <LinkCard title="createMember" href="/functions/createmember/" />
+    <LinkCard title="deleteMember" href="/functions/deletemember/" />
+    <LinkCard title="disconnect" href="/functions/disconnect/" />
+    <LinkCard title="fetch" href="/functions/fetch/" />
+    <LinkCard title="fetchLeaderboard" href="/functions/fetchleaderboard/" />
+    <LinkCard title="getCardData" href="/functions/getcarddata/" />
+    <LinkCard title="getLevelFromXP" href="/functions/getlevelfromxp/" />
+    <LinkCard title="getRank" href="/functions/getrank/" />
+    <LinkCard title="init" href="/functions/init/" />
+    <LinkCard title="removeXP" href="/functions/removexp/" />
+    <LinkCard title="requiredXP" href="/functions/requiredxp/" />
+    <LinkCard title="resetXP" href="/functions/resetxp/" />
+    <LinkCard title="setXP" href="/functions/setxp/" />
+</CardGrid>

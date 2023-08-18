@@ -272,8 +272,8 @@ class DiscordRankup {
 
   /**
    * fetch a member from the database
-   * @param {string} userID The ID of the user
-   * @param {string} guildID The ID of the guild
+   * @param {(string|Snowflake)} userID The ID of the user
+   * @param {(string|Snowflake)} guildID The ID of the guild
    * @returns {XPMember} The member's XPMember object
    */
   public static async fetch(
@@ -289,6 +289,12 @@ class DiscordRankup {
     return member;
   }
 
+  /**
+   * Get the user's rank in the leaderboard
+   * @param {(string|Snowflake)} userID The ID of the user
+   * @param {(string|Snowflake)} guildID The ID of the guild
+   * @returns {number} The user's rank
+   */
   public static async getRank(
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     userID: string | Snowflake,
@@ -308,7 +314,7 @@ class DiscordRankup {
 
   /**
    * Fetch the leaderboard
-   * @param {string} guildID The ID of the guild
+   * @param {(string|Snowflake)} guildID The ID of the guild
    * @param {LeaderboardQuery} options The options for the leaderboard
    * @returns {XPMember[]} The leaderboard
    */

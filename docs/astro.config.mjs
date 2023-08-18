@@ -25,9 +25,19 @@ export default defineConfig({
           autogenerate: { directory: 'guides' }
         },
         {
+          label: 'Classes',
+          autogenerate: { directory: 'classes' }
+        },
+        {
           label: 'Functions',
           autogenerate: {
             directory: 'functions',
+          },
+        },
+        {
+          label: 'Typedefs',
+          autogenerate: {
+            directory: 'typedefs',
           },
         },
       ],
@@ -37,10 +47,5 @@ export default defineConfig({
       applyBaseStyles: false,
     }),
   ],
-  // Process images with sharp: https://docs.astro.build/en/guides/assets/#using-sharp
-  image: {
-    service: {
-      entrypoint: 'astro/assets/services/sharp',
-    },
-  },
+  site: 'https://discord-rankup.js.org',
 });
