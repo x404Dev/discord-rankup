@@ -23,8 +23,8 @@ export default defineConfig({
         {
           label: 'Guides',
           items: [
-            { label: 'Introduction', link: '/introduction' },
-            { label: 'Examples',  autogenerate: { directory: 'guides/examples' } }
+            { label: 'Introduction', link: 'guides/introduction' },
+            { label: 'Examples',  autogenerate: { directory: 'guides/Examples' } }
             
           ],
         },
