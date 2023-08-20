@@ -65,6 +65,7 @@ xp.deleteMember(userID, guildID)
 Here's a list of events in Discord-Rankup's latest version.
 
 - levelUp
+- LevelDown
 
 :::note
 Discord-Rankup emits the event to the discord client, so the event handling is the same as any basic discord.js events.

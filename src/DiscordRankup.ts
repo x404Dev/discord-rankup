@@ -114,9 +114,9 @@ class DiscordRankup {
     // Update the member's XP
     memberToUpdate.XP += xp;
     const level = this.getLevelFromXP(memberToUpdate.XP);
-    // Emit levelUp event if the user levels up
-    if (level > memberToUpdate.Level && emitEvent) {
-      this.client.emit('levelUp', memberToUpdate, cause);
+    // Detect level change
+    if (level != memberToUpdate.Level && emitEvent) {
+      this.levelChange(memberToUpdate, memberToUpdate.Level, level, cause)
     }
     memberToUpdate.Level = level;
     // Save the member to the database
@@ -153,9 +153,9 @@ class DiscordRankup {
     // Update the member's XP, if the user has less XP than the amount to remove, set it to 0
     memberToUpdate.XP = memberToUpdate.XP - xp < 0 ? 0 : memberToUpdate.XP - xp;
     const level = this.getLevelFromXP(memberToUpdate.XP);
-    // Emit levelUp event if the user levels up
-    if (level > memberToUpdate.Level && emitEvent) {
-      this.client.emit('levelUp', memberToUpdate, cause);
+    // Detect level change
+    if (level != memberToUpdate.Level && emitEvent) {
+      this.levelChange(memberToUpdate, memberToUpdate.Level, level, cause)
     }
     memberToUpdate.Level = level;
     // Save the member to the database
@@ -193,9 +193,9 @@ class DiscordRankup {
     // Update the member's XP
     memberToUpdate.XP = xp;
     const level = this.getLevelFromXP(xp);
-    // Emit levelUp event if the user levels up
-    if (level > memberToUpdate.Level && emitEvent && this.client) {
-      this.client.emit('levelUp', memberToUpdate, cause);
+    // Detect level change
+    if (level != memberToUpdate.Level && emitEvent && this.client) {
+      this.levelChange(memberToUpdate, memberToUpdate.Level, level, cause)
     }
     memberToUpdate.Level = level;
     // Save the member to the database
@@ -344,6 +344,14 @@ class DiscordRankup {
     }
 
     return leaderboard.sort((a, b) => b.XP - a.XP);
+  }
+
+  private static levelChange(member, oldLevel, newLevel, cause) {
+    if (oldLevel < newLevel) {
+      this.client.emit('levelUp', member, cause);
+    } else {
+      this.client.emit('levelDown', member, cause);
+    }
   }
 }
 

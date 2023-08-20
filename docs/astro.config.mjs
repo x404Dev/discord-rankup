@@ -33,6 +33,12 @@ export default defineConfig({
           autogenerate: { directory: 'classes' }
         },
         {
+          label: 'Events',
+          autogenerate: {
+            directory: 'events',
+          },
+        },
+        {
           label: 'Functions',
           autogenerate: {
             directory: 'functions',
@@ -44,6 +50,7 @@ export default defineConfig({
             directory: 'typedefs',
           },
         },
+        
       ],
     }),
     tailwind({
