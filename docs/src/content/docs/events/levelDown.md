@@ -8,5 +8,4 @@ This event is emitted when a user levels down.
 
 | Parameter | Type | Description |
 | :--- | :--- | :--- |
-|member|XPMember|The member that leveled down|
-|cause|any \| undefined|The cause of the level down if defined when adding or removing XP|
+|event|LevelChangeEvent|The level change event data that was emitted|

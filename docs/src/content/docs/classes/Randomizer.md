@@ -6,7 +6,7 @@ The randomizer is a utils class to facilitate the randomizing process for the xp
 
 ## Methods
 
-### `randomize()`
+### `randomizeXP()`
 
 #### Parameters
 | Parameter | Type | Description | Required | Default |

@@ -1,6 +1,11 @@
 import mongoose, { ConnectOptions } from 'mongoose';
 import xpmember from './models/xpmember';
-import { LeaderboardQuery, XPCardData, XPMember } from './types/types';
+import {
+  LeaderboardQuery,
+  LevelChangeEvent,
+  XPCardData,
+  XPMember,
+} from './types/types';
 import { Client, Snowflake } from 'discord.js';
 
 /**
@@ -91,15 +96,15 @@ class DiscordRankup {
    * @param {(string|Snowflake)} guildID The ID of the guild
    * @param {number} xp The amount of XP to add
    * @param {boolean} emitEvent Whether to emit the levelUp event
-   * @param {any} cause The cause of the level up, defined when a function affecting the xp is called
+   * @param {T} metadata The metadata of the level up, defined when a function affecting the xp is called
    * @returns {Promise<number>} The new amount of user's XP
    */
-  public static async addXP(
+  public static async addXP<T>(
     userID: string | Snowflake,
     guildID: string | Snowflake,
     xp: number,
     emitEvent = true,
-    cause?: any,
+    metadata?: T,
   ): Promise<number> {
     // Add xp to the user on mongoDB with XPMember model
     const member = await xpmember.findOne({ UserID: userID, GuildID: guildID });
@@ -116,7 +121,12 @@ class DiscordRankup {
     const level = this.getLevelFromXP(memberToUpdate.XP);
     // Detect level change
     if (level != memberToUpdate.Level && emitEvent) {
-      this.levelChange(memberToUpdate, memberToUpdate.Level, level, cause)
+      this.levelChange({
+        member: memberToUpdate,
+        oldLevel: memberToUpdate.Level,
+        newLevel: level,
+        metadata: metadata,
+      });
     }
     memberToUpdate.Level = level;
     // Save the member to the database
@@ -130,15 +140,15 @@ class DiscordRankup {
    * @param {(string|Snowflake)} guildID The ID of the guild
    * @param {number} xp The amount of XP to remove
    * @param {boolean} emitEvent Whether to emit the levelUp event
-   * @param {any} cause The cause of the level up, defined when a function affecting the xp is called
+   * @param {T} metadata The metadata of the level up, defined when a function affecting the xp is called
    * @returns {Promise<number>} The new amount of user's XP
    */
-  public static async removeXP(
+  public static async removeXP<T>(
     userID: string | Snowflake,
     guildID: string | Snowflake,
     xp: number,
     emitEvent = true,
-    cause?: any,
+    metadata?: T,
   ): Promise<number> {
     // Remove xp from the user on mongoDB with XPMember model
     const member = await xpmember.findOne({ UserID: userID, GuildID: guildID });
@@ -155,7 +165,12 @@ class DiscordRankup {
     const level = this.getLevelFromXP(memberToUpdate.XP);
     // Detect level change
     if (level != memberToUpdate.Level && emitEvent) {
-      this.levelChange(memberToUpdate, memberToUpdate.Level, level, cause)
+      this.levelChange({
+        member: memberToUpdate,
+        oldLevel: memberToUpdate.Level,
+        newLevel: level,
+        metadata: metadata,
+      });
     }
     memberToUpdate.Level = level;
     // Save the member to the database
@@ -169,15 +184,15 @@ class DiscordRankup {
    * @param {string} guildID The ID of the guild
    * @param {number} xp The amount of XP to set
    * @param {Boolean} emitEvent Whether to emit the levelUp event
-   * @param {any} cause The cause of the level up, defined when a function affecting the xp is called
+   * @param {T} metadata The metadata of the level up, defined when a function affecting the xp is called
    * @returns {number} The new amount of user's XP
    */
-  public static async setXP(
+  public static async setXP<T>(
     userID: string | Snowflake,
     guildID: string | Snowflake,
     xp: number,
     emitEvent = true,
-    cause?: any,
+    metadata?: T,
   ): Promise<number> {
     if (xp < 0) throw new Error('XP cannot be negative');
 
@@ -195,7 +210,12 @@ class DiscordRankup {
     const level = this.getLevelFromXP(xp);
     // Detect level change
     if (level != memberToUpdate.Level && emitEvent && this.client) {
-      this.levelChange(memberToUpdate, memberToUpdate.Level, level, cause)
+      this.levelChange({
+        member: memberToUpdate,
+        oldLevel: memberToUpdate.Level,
+        newLevel: level,
+        metadata: metadata,
+      });
     }
     memberToUpdate.Level = level;
     // Save the member to the database
@@ -346,11 +366,11 @@ class DiscordRankup {
     return leaderboard.sort((a, b) => b.XP - a.XP);
   }
 
-  private static levelChange(member, oldLevel, newLevel, cause) {
-    if (oldLevel < newLevel) {
-      this.client.emit('levelUp', member, cause);
+  private static levelChange<T>(event: LevelChangeEvent<T>) {
+    if (event.oldLevel < event.newLevel) {
+      this.client.emit('levelUp', event);
     } else {
-      this.client.emit('levelDown', member, cause);
+      this.client.emit('levelDown', event);
     }
   }
 }

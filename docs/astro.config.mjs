@@ -9,12 +9,12 @@ export default defineConfig({
     starlight({
       title: 'Discord-Rankup',
       customCss: [
-				// Path to your Tailwind base styles:
-				'./src/tailwind.css',
-			],
+        // Path to your Tailwind base styles:
+        './src/tailwind.css',
+      ],
       editLink: {
-				baseUrl: 'https://github.com/x404dev/discord-rankup/edit/main/docs/',
-			},
+        baseUrl: 'https://github.com/x404dev/discord-rankup/edit/main/docs/',
+      },
       social: {
         github: 'https://github.com/x404dev/discord-rankup',
         discord: 'https://discord.gg/yktBMMMpMz',
@@ -24,13 +24,15 @@ export default defineConfig({
           label: 'Guides',
           items: [
             { label: 'Introduction', link: 'guides/introduction' },
-            { label: 'Examples',  autogenerate: { directory: 'guides/Examples' } }
-            
+            {
+              label: 'Examples',
+              autogenerate: { directory: 'guides/Examples' },
+            },
           ],
         },
         {
           label: 'Classes',
-          autogenerate: { directory: 'classes' }
+          autogenerate: { directory: 'classes' },
         },
         {
           label: 'Events',
@@ -50,7 +52,6 @@ export default defineConfig({
             directory: 'typedefs',
           },
         },
-        
       ],
     }),
     tailwind({

@@ -41,3 +41,10 @@ export interface XPCardData {
   /** The amount of XP the user is missing to level up */
   missingXP: number;
 }
+
+export interface LevelChangeEvent<T> {
+  member: XPMember;
+  oldLevel: number;
+  newLevel: number;
+  metadata?: T;
+}
