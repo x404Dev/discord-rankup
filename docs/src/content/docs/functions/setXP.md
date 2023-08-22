@@ -12,7 +12,7 @@ Sets the XP of a user in a guild
 |guildID|String \| Snowflake|The ID of the guild|✅|N/A|
 |xp|Number|The amount of XP to set|✅|N/A|
 |emitEvent|Boolean|Whether to emit the levelUp event|❌|True|
-|cause|Any|The cause of the level up, defined when a function affecting the xp is called|❌|N/A|
+|metadata|T|Metadata to be sent with levelUp or levelDown events|❌|N/A|
 
 
 ### Returns
