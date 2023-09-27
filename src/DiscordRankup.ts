@@ -37,6 +37,7 @@ class DiscordRankup {
   ) {
     // Connect to the database
     this.mongoURL = url;
+    this.client = client;
     return await mongoose.connect(url, options);
   }
 
