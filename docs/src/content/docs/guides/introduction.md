@@ -25,50 +25,50 @@ pnpm add discord-rankup
 First you need to initiate the Rankup Client.
 
 ```js
-const xp = require('discord-rankup');
+const { DiscordRankUp } = require('discord-rankup');
 
-xp.init("MONGO_URL", client);
+DiscordRankUp.init("MONGO_URL", client);
 ```
 
 :::tip
-Don't forget to replace `MONGO_URL` with your MongoDB URL and `client` with your Discord.JS Client.
+Don't forget to replace `MONGO_URL` with your MongoDB URL and `client` with your discord.js Client.
 :::
 
 Once that is done, you can start managing the user's XP.
 
 ```js
-xp.addXP(userID, guildID, xpAmount, emitEvent, cause)
+DiscordRankUp.addXP(userID, guildID, xp, emitEvent, metadata)
 ```
 
-- userID: The user's ID
-- guildID: The guild's ID
-- xpAmount: The amount of XP to add
-- emitEvent (optional, true by default): Whether or not to emit the event if the user levels up
-- cause (optional): The cause of the XP gain, can be any object, it will be emitted in the event
+- userID: The ID of the user.
+- guildID: The ID of the guild.
+- xp: The amount of XP to add.
+- emitEvent (optional, true by default): Whether or not to emit the event if the user levels up.
+- metadata (optional): Any additional data you want to pass with the event, can be anything.
 
 Here is a list of more functions you can use:
 
 :::note
-More informations about the functions can be found in the functions section.
+More information about the functions can be found in the functions section.
 :::
 
 ```js
-xp.removeXP(userID, guildID, xpAmount, emitEvent, cause)
-xp.setXP(userID, guildID, xpAmount, emitEvent, cause)
-xp.fetchXP(userID, guildID)
-xp.createMember(userID, guildID)
-xp.deleteMember(userID, guildID)
+DiscordRankUp.removeXP(userID, guildID, xp, emitEvent, metadata)
+DiscordRankUp.setXP(userID, guildID, xp, emitEvent, metadata)
+DiscordRankUp.fetch(userID, guildID)
+DiscordRankUp.createMember(userID, guildID)
+DiscordRankUp.deleteMember(userID, guildID)
 ```
 
 ## Events
 
-Here's a list of events in Discord-Rankup's latest version.
+There are 2 events in Discord-Rankup's latest version.
 
-- levelUp
-- LevelDown
+- [LevelDown](/events/leveldown/)
+- [levelUp](/events/levelup/)
 
 :::note
-Discord-Rankup emits the event to the discord client, so the event handling is the same as any basic discord.js events.
+Discord-Rankup emits the event to the discord client, so the event handling is the same as any basic discord.js event.
 :::
 
 :::tip
