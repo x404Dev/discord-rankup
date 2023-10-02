@@ -10,30 +10,38 @@ This is a basic example of a Discord bot using Discord-Rankup.
 - [Node.js](https://nodejs.org/en/) 12.0.0 or newer
 - [Discord.js](https://discord.js.org/#/)
 - [Discord-Rankup](https://www.npmjs.com/package/discord-rankup)
-- Basic Javascript knowledge
-- Basic Discord.JS knowledge
+- Basic JavaDcript knowledge
+- Basic discord.js knowledge
 
 ```js
 const { Client } = require('discord.js');
-const xp = require('discord-rankup');
+const { DiscordRankUp, Randomizer } = require('discord-rankup');
 
-//Create the discord client
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+// Creating the discord client
+const client = new Client({ intents: [GatewayIntentBits.Guilds, "other intents"] });
 
-//Init the rankup module
-xp.init("MONGO_URL", client);
+// Initialize the Rankup module
+DiscordRankUp.init("MONGO_URL", client);
 
-client.on('ready', () => {
-    console.log(`Logged in as ${client.user.tag}!`);
+client.once('ready', () => {
+  console.log(`Logged in as ${client.user.tag}!`);
 });
 
-//On message, add 10 XP to the user
+
+// If someone sends a message, add between 10 and 30 XP to the user
 client.on('messageCreate', (message) => {
-    xp.addXP(message.author.id, message.guild.id, 10);
-})
+  DiscordRankUp.addXP(message.author.id, message.guild.id, Randomizer.randomXP(10, 30));
+});
+
+client.on("levelUp", (levelUpEvent) =>{
+  const { newLevel, member, metadata } = levelEvent;
+
+  // metadata here is set to a <TextChannel> with discord.js
+  metadata.send(`🎉 <@${member.UserID}> leveled up to level ${newLevel}! 🎉`)
+});
 
 // Start the client
 client.login("TOKEN");
 ```
 
-This is a very basic bot that adds 10 XP to the user every time they send a message.
+This is a very basic bot that adds between 10 and 30 XP to a user every time they send a message.

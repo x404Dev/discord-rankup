@@ -8,9 +8,9 @@ Returns the XP required to reach a specified level
 
 | Parameter | Type | Description | Required | Default |
 |-----------|------|-------------|----------|---------|
-|level|Number|The level|✅|N/A|
+|level|[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)|The level|✅|None|
 
 
 ### Returns
 
-Number - The XP required to reach the specified level
+[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) - The XP required to reach the specified level

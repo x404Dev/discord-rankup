@@ -2,7 +2,7 @@
 title: Randomizer
 ---
 
-The randomizer is a utils class to facilitate the randomizing process for the xp system.
+Randomizer is a utils class to facilitate the randomizing process for the xp system.
 
 ## Methods
 
@@ -11,9 +11,9 @@ The randomizer is a utils class to facilitate the randomizing process for the xp
 #### Parameters
 | Parameter | Type | Description | Required | Default |
 |-----------|------|-------------|----------|---------|
-|min|Number|The minimum number to randomize|✅|N/A|
-|max|Number|The maximum number to randomize|✅|N/A|
+|min|[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)|The minimum number to randomize|✅|None|
+|max|[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)|The maximum number to randomize|✅|None|
 
 #### Returns
 
-Number - The randomized number
+[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) - The randomly generated number between range `min` to `max`

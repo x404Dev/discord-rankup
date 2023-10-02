@@ -8,4 +8,4 @@ This event is emitted when a user levels down.
 
 | Parameter | Type | Description |
 | :--- | :--- | :--- |
-|event|LevelChangeEvent|The level change event data that was emitted|
+|[event](https://developer.mozilla.org/en-US/docs/Web/API/Event)|[levelChangeEvent](/typedefs/levelchangeevent/)|The level change event data that was emitted|

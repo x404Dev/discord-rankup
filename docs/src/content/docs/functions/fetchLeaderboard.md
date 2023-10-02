@@ -8,19 +8,23 @@ Fetches a user's XP Profile from a guild on the database
 
 | Parameter | Type | Description | Required | Default |
 |-----------|------|-------------|----------|---------|
-|guildID|String \| Snowflake|The ID of the guild|✅|N/A|
-|options|LeaderboardQuery|The options for the leaderboard|❌|{ limit: 10, page: 1, sort: 'DESC' }|
+|guildID|[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Snowflake](https://old.discordjs.dev/#/docs/discord.js/main/typedef/Snowflake)|The ID of the guild|✅|None|
+|options|[LeaderboardQuery](/typedefs/leaderboardquery/)|The options for the leaderboard|❌|{ limit: 10, skip: 0 }|
 
 
 ### Returns
 
-XPMember[] - The leaderboard as per the options
+[Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)\< [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)\<[XPMember](/typedefs/xpmember/)\> \> - List of members as per the options
 
 :::note
-The default query looks like this:
-- Limit: 10
-- Skip: 0
-- Sorting: DESC
+A query can look like this:
+```js
+const LeaderboardQuery = {
+  limit: 10,
+  skip: 20,
+  exclude: ["1158137762503999670", "513709333494628355"]
+}
+```
 
-Basically it gets the top 10 members with the highest XP count
+This query returns only the top between 21 and 30 members with the highest XP not including the two users with the defined UserIDs
 :::
