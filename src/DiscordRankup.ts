@@ -126,7 +126,7 @@ class DiscordRankup {
         member: memberToUpdate,
         oldLevel: memberToUpdate.Level,
         newLevel: level,
-        metadata: metadata,
+        metadata: metadata ? metadata : null,
       });
     }
     memberToUpdate.Level = level;
@@ -170,7 +170,7 @@ class DiscordRankup {
         member: memberToUpdate,
         oldLevel: memberToUpdate.Level,
         newLevel: level,
-        metadata: metadata,
+        metadata: metadata ? metadata : null,
       });
     }
     memberToUpdate.Level = level;
@@ -215,7 +215,7 @@ class DiscordRankup {
         member: memberToUpdate,
         oldLevel: memberToUpdate.Level,
         newLevel: level,
-        metadata: metadata,
+        metadata: metadata ? metadata : null,
       });
     }
     memberToUpdate.Level = level;
